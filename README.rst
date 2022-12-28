@@ -15,6 +15,8 @@ Statistics to show
 - Lines cleared with no viruses.
 
 - Pills per second.
+
+- Unusable pill burst.
   
 Output from image analysis
 --------------------------
