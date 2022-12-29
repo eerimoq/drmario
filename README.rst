@@ -25,7 +25,7 @@ Statistics to show
 
 - Viruses left per color.
 
-- Lines cleared with no viruses.
+- Clears with no viruses.
 
 - Pills per second.
 
@@ -37,3 +37,7 @@ Output from image analysis
 - New pill and its colors.
 
 - Pills, viruses and clear locations in the bottle.
+
+- Player clocks?
+
+- Standings?
