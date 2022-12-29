@@ -57,11 +57,12 @@ static void *filter_create(obs_data_t *settings, obs_source_t *source)
     obs_enter_graphics();
 
     effect_file = obs_module_file("test.effect");
-
+    blog(LOG_INFO, "test.effect: %p", effect_file);
     tf->source = source;
     tf->whatever = gs_effect_create_from_file(effect_file, NULL);
     bfree(effect_file);
     if (!tf->whatever) {
+        blog(LOG_INFO, "no test.effect");
         filter_destroy(tf);
         tf = NULL;
     }
