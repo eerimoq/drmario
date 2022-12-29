@@ -3,8 +3,8 @@ About
 
 The Dr. Mario package in the `Mys programming language`_.
 
-Input structure
-===============
+Input format
+============
 
 Nicely formatted for readability. The program only accepts single line
 JSON documents.

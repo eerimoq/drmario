@@ -1,6 +1,21 @@
 Dr. Mario
 =========
 
+Use cases
+---------
+
+1. Single player streamed with OBS.
+
+   In OBS, add the Dr. Mario filter to the game video capture.
+
+2. Tournament match streamed with OBS.
+
+   Players streams without Dr. Mario filter. The restreamer runs the
+   Dr. Mario filter on both players streams simultaniously.
+
+   Players do not stream the game, but only sends JSON documents
+   describing the game to the "restreamer".
+
 Statistics to show
 ------------------
 
@@ -17,7 +32,7 @@ Statistics to show
 - Pills per second.
 
 - Unusable pill burst.
-  
+
 Output from image analysis
 --------------------------
 
