@@ -10,12 +10,9 @@ Use cases
 
 2. Tournament match streamed with OBS.
 
-   Option 1: Players streams without Dr. Mario filter. The restreamer
-             creates a two player tournament scene and adds the
-             Dr. Mario filter on the scene (a group).
-
-   Option 2: Players do not stream the game, but only sends JSON
-             documents describing the game to the "restreamer".
+   Players streams without Dr. Mario filter. The restreamer creates a
+   two player tournament scene in OBS and adds the Dr. Mario filter on
+   the scene (a group).
 
 Statistics to show
 ------------------
