@@ -1,6 +1,6 @@
 /*
-Dr. Mario
-Copyright (C) 2022 erik.moqvist@gmail.com
+OBS Asynchronous Source Duplication Plugin
+Copyright (C) 2022 Norihiro Kamae <norihiro@nagater.net>
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -13,100 +13,31 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along
-with this program. If not, see <https://www.gnu.org/licenses/>
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 #include <obs-module.h>
 
 #include "plugin-macros.generated.h"
 
-OBS_DECLARE_MODULE();
+OBS_DECLARE_MODULE()
+OBS_MODULE_USE_DEFAULT_LOCALE(PLUGIN_NAME, "en-US")
 
-struct test_filter {
-    obs_source_t *source;
-    gs_effect_t *whatever;
-};
-
-static const char *filter_getname(void *unused)
-{
-    UNUSED_PARAMETER(unused);
-    return "Dr. Mario";
-}
-
-static void filter_destroy(void *data)
-{
-    struct test_filter *tf = data;
-
-    if (tf) {
-        obs_enter_graphics();
-
-        gs_effect_destroy(tf->whatever);
-        bfree(tf);
-
-        obs_leave_graphics();
-    }
-}
-
-static void *filter_create(obs_data_t *settings, obs_source_t *source)
-{
-    UNUSED_PARAMETER(settings);
-
-    struct test_filter *tf = bzalloc(sizeof(struct test_filter));
-    char *effect_file;
-
-    obs_enter_graphics();
-
-    effect_file = obs_module_file("test.effect");
-    blog(LOG_INFO, "test.effect: %p", effect_file);
-    tf->source = source;
-    tf->whatever = gs_effect_create_from_file(effect_file, NULL);
-    bfree(effect_file);
-    if (!tf->whatever) {
-        blog(LOG_INFO, "no test.effect");
-        filter_destroy(tf);
-        tf = NULL;
-    }
-
-    obs_leave_graphics();
-
-    return tf;
-}
-
-static void filter_render(void *data, gs_effect_t *effect)
-{
-    UNUSED_PARAMETER(effect);
-
-    struct test_filter *tf = data;
-
-    if (!obs_source_process_filter_begin(tf->source,
-                                         GS_RGBA,
-                                         OBS_ALLOW_DIRECT_RENDERING)) {
-        return;
-    }
-
-    obs_source_process_filter_end(tf->source, tf->whatever, 0, 0);
-}
-
-static struct obs_source_info test_filter = {
-    .id = "dr_mario",
-    .type = OBS_SOURCE_TYPE_FILTER,
-    .output_flags = OBS_SOURCE_VIDEO,
-    .get_name = filter_getname,
-    .create = filter_create,
-    .destroy = filter_destroy,
-    .video_render = filter_render,
-};
+//extern const struct obs_source_info async_srcdup_filter;
+//extern const struct obs_source_info async_srcdup_source;
+extern const struct obs_source_info drmario_filter;
 
 bool obs_module_load(void)
 {
-    blog(LOG_INFO,
-         "Dr mario plugin loaded successfully (version %s)",
-         PLUGIN_VERSION);
-    obs_register_source(&test_filter);
+    //obs_register_source(&async_srcdup_filter);
+    //obs_register_source(&async_srcdup_source);
+    obs_register_source(&drmario_filter);
+    blog(LOG_INFO, "plugin loaded successfully (version %s)", PLUGIN_VERSION);
     return true;
 }
 
 void obs_module_unload()
 {
-    blog(LOG_INFO, "Dr mario plugin unloaded");
+	blog(LOG_INFO, "plugin unloaded");
 }
