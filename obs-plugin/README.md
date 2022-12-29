@@ -1,5 +1,6 @@
 ```
 Build:   .github/scripts/build-macos.zsh
+         cp test.effect draw.effect release/drmario-plugin.plugin/Contents/Resources
 Install: mkdir -p ~/Library/Application\ Support/obs-studio/plugins && ln -s $(pwd)/release/* ~/Library/Application\ Support/obs-studio/plugins/
 Logs:    ~/Library/Application\ Support/obs-studio/logs
 ```
