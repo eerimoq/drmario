@@ -1,3 +1,9 @@
+```
+Build:   .github/scripts/build-macos.zsh
+Install: mkdir -p ~/Library/Application\ Support/obs-studio/plugins && ln -s $(pwd)/release/* ~/Library/Application\ Support/obs-studio/plugins/
+Logs:    ls -ltr ~/Library/Application Support/obs-studio/logs/
+```
+
 # OBS Plugin Template
 
 ## Introduction
