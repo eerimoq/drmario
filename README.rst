@@ -14,8 +14,8 @@ Use cases
    two player tournament scene in OBS and adds the Dr. Mario filter on
    the scene (a group). Not possible with async filter unfortunately.
 
-Statistics to show
-------------------
+Statistics to (optionally) show
+-------------------------------
 
 - Viruses cleared per pill (moving average).
 

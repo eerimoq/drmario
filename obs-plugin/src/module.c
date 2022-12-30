@@ -21,8 +21,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "plugin-macros.generated.h"
 
-OBS_DECLARE_MODULE()
-OBS_MODULE_USE_DEFAULT_LOCALE(PLUGIN_NAME, "en-US")
+OBS_DECLARE_MODULE();
+OBS_MODULE_USE_DEFAULT_LOCALE(PLUGIN_NAME, "en-US");
 
 extern const struct obs_source_info drmario_filter;
 
@@ -37,5 +37,5 @@ bool obs_module_load(void)
 
 void obs_module_unload()
 {
-	blog(LOG_INFO, "plugin unloaded");
+    blog(LOG_INFO, "plugin unloaded");
 }

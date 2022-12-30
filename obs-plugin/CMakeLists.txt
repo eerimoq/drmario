@@ -20,7 +20,7 @@ set(LINUX_MAINTAINER_EMAIL "erik.moqvist@gmail.com")
 # e.g. in Xcode or Visual Studio
 target_sources(${CMAKE_PROJECT_NAME}
                PRIVATE
-               src/plugin-main.c
+               src/module.c
                src/drmario-filter.c)
 
 # Import libobs as main plugin dependency
