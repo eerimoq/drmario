@@ -12,10 +12,12 @@ Use cases
 
    Players streams without Dr. Mario filter. The restreamer creates a
    two player tournament scene in OBS and adds the Dr. Mario filter on
-   the scene (a group).
+   the scene (a group). Not possible with async filter unfortunately.
 
 Statistics to show
 ------------------
+
+- Number of singles, doubles and triples.
 
 - Pill counts. Total and per color.
 

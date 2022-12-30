@@ -24,16 +24,14 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 OBS_DECLARE_MODULE()
 OBS_MODULE_USE_DEFAULT_LOCALE(PLUGIN_NAME, "en-US")
 
-//extern const struct obs_source_info async_srcdup_filter;
-//extern const struct obs_source_info async_srcdup_source;
 extern const struct obs_source_info drmario_filter;
 
 bool obs_module_load(void)
 {
-    //obs_register_source(&async_srcdup_filter);
-    //obs_register_source(&async_srcdup_source);
     obs_register_source(&drmario_filter);
+
     blog(LOG_INFO, "plugin loaded successfully (version %s)", PLUGIN_VERSION);
+
     return true;
 }
 
