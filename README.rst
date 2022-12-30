@@ -17,19 +17,19 @@ Use cases
 Statistics to show
 ------------------
 
+- Viruses cleared per pill (moving average).
+
+- Pills per second (moving average).
+
+- Combos: Fat log, sweet-t, lightning, ...
+
 - Number of singles, doubles and triples.
 
 - Pill counts. Total and per color.
 
-- Viruses cleared per pill.
-
-- Combo count. Fat log, sweet-t, lightning.
-
 - Viruses left per color.
 
 - Clears with no viruses.
-
-- Pills per second.
 
 - Unusable pill burst.
 
