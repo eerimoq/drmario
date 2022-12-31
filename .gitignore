@@ -1,4 +1,6 @@
 *~
 .DS_Store
-obs-studio
-obs-build-dependencies
+.github/scripts/.Brewfile.lock.json
+build_arm64/
+release/
+src/plugin_macros.h
