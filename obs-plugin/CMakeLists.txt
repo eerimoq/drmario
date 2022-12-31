@@ -21,7 +21,7 @@ set(LINUX_MAINTAINER_EMAIL "erik.moqvist@gmail.com")
 target_sources(${CMAKE_PROJECT_NAME}
                PRIVATE
                src/plugin.c
-               src/drmario-filter.c)
+               src/dr_mario_filter.c)
 
 # Import libobs as main plugin dependency
 find_package(libobs REQUIRED)
@@ -44,9 +44,9 @@ set_target_properties(
              AUTORCC ON)
 #]]
 
-configure_file(src/plugin-macros.h.in ${CMAKE_SOURCE_DIR}/src/plugin-macros.generated.h)
+configure_file(src/plugin_macros.h.in ${CMAKE_SOURCE_DIR}/src/plugin_macros.h)
 
-target_sources(${CMAKE_PROJECT_NAME} PRIVATE src/plugin-macros.generated.h)
+target_sources(${CMAKE_PROJECT_NAME} PRIVATE src/plugin_macros.h)
 
 # /!\ TAKE NOTE: No need to edit things past this point /!\
 

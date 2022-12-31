@@ -33,6 +33,13 @@ Statistics to (optionally) show
 
 - Unusable pill burst.
 
+Input to image analysis
+-----------------------
+
+- An image that contains at least the bottle and next pill.
+
+- Bottle and next pill coordinates.
+  
 Output from image analysis
 --------------------------
 

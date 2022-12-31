@@ -9,5 +9,5 @@
 .idea
 
 # ignore generated files
-*.generated.*
+src/plugin_macros.h
 **/.Brewfile.lock.json

@@ -1,6 +1,6 @@
 /*
 OBS Asynchronous Source Duplication Plugin
-Copyright (C) 2022 Norihiro Kamae <norihiro@nagater.net>
+Copyright (C) 2022 Erik Moqvist <erik.moqvist@gmail.com>
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,8 +18,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 */
 
 #include <obs-module.h>
-
-#include "plugin-macros.generated.h"
+#include "plugin_macros.h"
 
 OBS_DECLARE_MODULE();
 OBS_MODULE_USE_DEFAULT_LOCALE(PLUGIN_NAME, "en-US");
