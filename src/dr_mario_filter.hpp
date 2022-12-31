@@ -1,5 +1,5 @@
 /*
-OBS Asynchronous Source Duplication Plugin
+Dr. Mario
 Copyright (C) 2022 Erik Moqvist <erik.moqvist@gmail.com>
 
 This program is free software; you can redistribute it and/or modify
@@ -13,27 +13,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along
-with this program; if not, write to the Free Software Foundation, Inc.,
-51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+with this program. If not, see <https://www.gnu.org/licenses/>
 */
 
-#include <obs-module.h>
-#include "plugin_macros.h"
-#include "dr_mario_filter.hpp"
-
-OBS_DECLARE_MODULE();
-OBS_MODULE_USE_DEFAULT_LOCALE(PLUGIN_NAME, "en-US");
-
-bool obs_module_load(void)
-{
-    register_dr_mario_filter();
-
-    blog(LOG_INFO, "plugin loaded successfully (version %s)", PLUGIN_VERSION);
-
-    return true;
-}
-
-void obs_module_unload()
-{
-    blog(LOG_INFO, "plugin unloaded");
-}
+void register_dr_mario_filter();

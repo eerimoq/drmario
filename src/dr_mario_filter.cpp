@@ -228,3 +228,8 @@ struct obs_source_info drmario_filter = {
     .filter_video = filter_video,
     .filter_remove = filter_remove
 };
+
+void register_dr_mario_filter()
+{
+    obs_register_source(&drmario_filter);
+}
