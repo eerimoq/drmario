@@ -17,7 +17,7 @@ on:
       - main
 
 env:
-  PLUGIN_NAME: 'drmario-plugin'
+  PLUGIN_NAME: 'dr_mario'
 
 jobs:
   macos_build:
