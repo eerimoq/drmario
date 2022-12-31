@@ -16,8 +16,10 @@ You should have received a copy of the GNU General Public License along
 with this program. If not, see <https://www.gnu.org/licenses/>
 */
 
+#include <memory>
 #include <obs-module.h>
 #include "plugin_macros.h"
+#include "dr_mario_analyzer.hpp"
 
 #define SETTING_ENABLED_NAME "enabled"
 #define SETTING_ENABLED_TEXT "Enabled"
@@ -43,7 +45,7 @@ with this program. If not, see <https://www.gnu.org/licenses/>
 struct dr_mario_filter {
     bool enabled;
     obs_source_t *source;
-    gs_effect_t *whatever;
+    std::shared_ptr<DrMario::Analyzer> analyzer;
 };
 
 static obs_properties_t *filter_get_properties(void *data)
@@ -142,7 +144,7 @@ static void filter_get_defaults(obs_data_t *settings)
 
 static void filter_update(void *data, obs_data_t *settings)
 {
-    struct dr_mario_filter *dmf = data;
+    struct dr_mario_filter *dmf = static_cast<struct dr_mario_filter *>(data);
 
     dmf->enabled = obs_data_get_bool(settings, SETTING_ENABLED_NAME);
 }
@@ -158,17 +160,19 @@ static void *filter_create(obs_data_t *settings, obs_source_t *source)
 {
     UNUSED_PARAMETER(settings);
 
-    struct dr_mario_filter *dmf = bzalloc(sizeof(struct dr_mario_filter));
+    struct dr_mario_filter *dmf = static_cast<struct dr_mario_filter *>(
+                                      bzalloc(sizeof(struct dr_mario_filter)));
 
     dmf->enabled = true;
     dmf->source = source;
+    dmf->analyzer = std::make_shared<DrMario::Analyzer>();
 
     return dmf;
 }
 
 static void filter_destroy(void *data)
 {
-    struct dr_mario_filter *dmf = data;
+    struct dr_mario_filter *dmf = static_cast<struct dr_mario_filter *>(data);
 
     bfree(dmf);
 }
@@ -176,7 +180,7 @@ static void filter_destroy(void *data)
 static struct obs_source_frame* filter_video(void* data,
                                              struct obs_source_frame* frame)
 {
-    struct dr_mario_filter *dmf = data;
+    struct dr_mario_filter *dmf = static_cast<struct dr_mario_filter *>(data);
 
     if (dmf->enabled) {
         switch (frame->format) {
