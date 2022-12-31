@@ -21,7 +21,7 @@ env:
 
 jobs:
   macos_build:
-    name: 02 - macOS
+    name: macOS
     runs-on: macos-12
     strategy:
       fail-fast: true
@@ -150,7 +150,7 @@ jobs:
           path: ${{ github.workspace }}/plugin/release/${{ env.PLUGIN_NAME }}-*-macos-${{ matrix.arch }}.pkg
 
   linux_build:
-    name: 02 - Linux
+    name: Linux
     runs-on: ubuntu-22.04
     strategy:
       fail-fast: true
@@ -227,7 +227,7 @@ jobs:
           path: ${{ github.workspace }}/plugin/release/${{ env.PLUGIN_NAME }}-*-linux-${{ matrix.arch }}.*
 
   windows_build:
-    name: 02 - Windows
+    name: Windows
     runs-on: windows-2022
     strategy:
       fail-fast: true
@@ -322,7 +322,7 @@ jobs:
           path: ${{ github.workspace }}/plugin/release/${{ env.PLUGIN_NAME }}-*.exe
 
   make-release:
-    name: 03 - Create and upload release
+    name: Create and upload release
     runs-on: ubuntu-22.04
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     needs: [macos_build, linux_build, windows_build]
