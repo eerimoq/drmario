@@ -1,10 +1,8 @@
-#include <iostream>
-#include "cppflow/cppflow.h"
-
+#include <cppflow/cppflow.h>
 
 int main()
 {
-    cppflow::model model("model3");
+    cppflow::model model("model");
 
     auto image = "my_cat.jpg";
     auto cat = cppflow::decode_jpeg(cppflow::read_file(std::string(image)));
