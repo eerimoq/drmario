@@ -40,11 +40,9 @@ int main()
     fly = cppflow::cast(fly, TF_UINT8, TF_FLOAT);
     fly = cppflow::expand_dims(fly, 0);
 
-    for (int i = 0; i < 10; i++) {
-        process(model, "Cat", cat);
-        process(model, "Lion", lion);
-        process(model, "Fly", fly);
-    }
+    process(model, "Cat", cat);
+    process(model, "Lion", lion);
+    process(model, "Fly", fly);
 
     return 0;
 }
