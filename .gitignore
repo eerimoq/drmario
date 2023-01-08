@@ -4,3 +4,6 @@
 build_arm64/
 release/
 src/plugin_macros.h
+onnxtest/imagenet-simple-labels.json
+onnxtest/resnet50v2.tar.gz
+onnxtest/resnet50v2/

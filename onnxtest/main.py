@@ -30,7 +30,7 @@ for i in range(test_data_num):
         tensor.ParseFromString(f.read())
         inputs.append(numpy_helper.to_array(tensor))
 
-print('Loaded {} inputs successfully.'.format(test_data_num))
+# print('Loaded {} inputs successfully.'.format(test_data_num))
 
 ref_outputs = []
 for i in range(test_data_num):
@@ -40,19 +40,19 @@ for i in range(test_data_num):
         tensor.ParseFromString(f.read())    
         ref_outputs.append(numpy_helper.to_array(tensor))
 
-print('Loaded {} reference outputs successfully.'.format(test_data_num))
+# print('Loaded {} reference outputs successfully.'.format(test_data_num))
 
 session = onnxruntime.InferenceSession('resnet50v2/resnet50v2.onnx', None)
 input_name = session.get_inputs()[0].name  
-print('Input Name:', input_name)
+# print('Input Name:', input_name)
 
 outputs = [session.run([], {input_name: inputs[i]})[0] for i in range(test_data_num)]
-print('Predicted {} results.'.format(len(outputs)))
+# print('Predicted {} results.'.format(len(outputs)))
 
 for ref_o, o in zip(ref_outputs, outputs):
     np.testing.assert_almost_equal(ref_o, o, 4)
 
-print('ONNX Runtime outputs are similar to reference outputs!')
+# print('ONNX Runtime outputs are similar to reference outputs!')
 
 def load_labels(path):
     with open(path) as f:
@@ -78,28 +78,24 @@ def postprocess(result):
     return softmax(np.array(result)).tolist()
 
 labels = load_labels('imagenet-simple-labels.json')
-image = Image.open('images/dog.jpg')
-print("Image size: ", image.size)
-image_data = np.array(image).transpose(2, 0, 1)
-input_data = preprocess(image_data)
 
-start = time.time()
-raw_result = session.run([], {input_name: input_data})
-end = time.time()
-res = postprocess(raw_result)
-
-inference_time = np.round((end - start) * 1000, 2)
-idx = np.argmax(res)
-
-print('========================================')
-print('Final top prediction is: ' + labels[idx])
-print('========================================')
-
-print('========================================')
-print('Inference time: ' + str(inference_time) + " ms")
-print('========================================')
-
-sort_idx = np.flip(np.squeeze(np.argsort(res)))
-print('============ Top 5 labels are: ============================')
-print(labels[sort_idx[:5]])
-print('===========================================================')
+for image_path in glob.glob('images/*.jpg'):
+    image = Image.open(image_path)
+    # print("Image size: ", image.size)
+    image_data = np.array(image).transpose(2, 0, 1)
+    input_data = preprocess(image_data)
+    
+    start = time.time()
+    raw_result = session.run([], {input_name: input_data})
+    end = time.time()
+    res = postprocess(raw_result)
+    inference_time = np.round((end - start) * 1000, 2)
+    idx = np.argmax(res)
+    confidence = round(res[idx], 2)
+    
+    print(f"Top prediction is '{labels[idx]}' ({confidence}) in {inference_time} ms.")
+    
+    # sort_idx = np.flip(np.squeeze(np.argsort(res)))
+    # print('============ Top 5 labels are: ============================')
+    # print(labels[sort_idx[:5]])
+    # print('===========================================================')
