@@ -3,6 +3,14 @@
 
 using namespace std::chrono;
 
+static cppflow::tensor load_image(const std::string& image_path)
+{
+    auto image = cppflow::decode_jpeg(cppflow::read_file(image_path));
+    image = cppflow::cast(image, TF_UINT8, TF_FLOAT);
+
+    return cppflow::expand_dims(image, 0);
+}
+
 static void process(cppflow::model& model,
                     const std::string& kind,
                     cppflow::tensor& image)
@@ -25,20 +33,9 @@ int main()
 {
     cppflow::model model("model");
 
-    auto image = "images/my_cat.jpg";
-    auto cat = cppflow::decode_jpeg(cppflow::read_file(std::string(image)));
-    cat = cppflow::cast(cat, TF_UINT8, TF_FLOAT);
-    cat = cppflow::expand_dims(cat, 0);
-
-    image = "images/jean-wimmerlin-Cdl7BWwATPg-unsplash.jpg";
-    auto lion = cppflow::decode_jpeg(cppflow::read_file(std::string(image)));
-    lion = cppflow::cast(lion, TF_UINT8, TF_FLOAT);
-    lion = cppflow::expand_dims(lion, 0);
-
-    image = "images/Green_Fly.jpg";
-    auto fly = cppflow::decode_jpeg(cppflow::read_file(std::string(image)));
-    fly = cppflow::cast(fly, TF_UINT8, TF_FLOAT);
-    fly = cppflow::expand_dims(fly, 0);
+    auto cat = load_image("images/my_cat.jpg");
+    auto lion = load_image("images/jean-wimmerlin-Cdl7BWwATPg-unsplash.jpg");
+    auto fly = load_image("images/Green_Fly.jpg");
 
     process(model, "Cat", cat);
     process(model, "Lion", lion);
