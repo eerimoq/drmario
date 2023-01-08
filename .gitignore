@@ -3,7 +3,8 @@
 .github/scripts/.Brewfile.lock.json
 build_arm64/
 release/
+src/model/build/
 src/plugin_macros.h
-onnxtest/imagenet-simple-labels.json
-onnxtest/resnet50v2.tar.gz
-onnxtest/resnet50v2/
+src/onnxtest/imagenet-simple-labels.json
+src/onnxtest/resnet50v2.tar.gz
+src/onnxtest/resnet50v2/
